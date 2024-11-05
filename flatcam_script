@@ -1,0 +1,20 @@
+cd "C:/Users/Ethan/OneDrive - Virginia Tech/Projects/pcb engraver/auto-flatcam"
+
+open_gerber bcu.gbr
+open_excellon drill.drl
+mirror bcu.gbr -axis Y -box bcu.gbr
+mirror drill.drl -axis Y -box bcu.gbr
+
+isolate bcu.gbr -dia 0.59
+cutout bcu.gbr -dia 0.6 -margin 0.1 -gapsize 0.2 -gaps 4
+millholes drill.drl -tools 1,2,3 -tooldia 0.6
+
+cncjob bcu.gbr_iso -z_cut -0.01 -z_move 1.5 -feedrate 200 -tooldia 0.6 -spindlespeed 24000
+
+cncjob bcu.gbr_cutout -z_cut -3 -z_move 1.5 -feedrate 200 -tooldia 0.6 -spindlespeed 24000 -multidepth true -depthperpass 1
+
+cncjob drill.drl_mill -z_cut -3 -z_move 1.5 -feedrate 100 -tooldia 0.6 -spindlespeed 24000 -multidepth true -depthperpass 1
+
+write_gcode bcu.gbr_iso_cnc bcu.gcode
+write_gcode bcu.gbr_cutout_cnc cutout.gcode
+write_gcode drill.drl_mill_cnc drill.gcode
