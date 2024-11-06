@@ -1,1 +1,0 @@
-"C:\Program Files (x86)\FlatCAM\FlatCAM.exe" --shellfile="C:\Users\Ethan\OneDrive - Virginia Tech\Projects\pcb engraver\auto-flatcam\flatcam_script"
