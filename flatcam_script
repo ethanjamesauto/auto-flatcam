@@ -1,3 +1,4 @@
+# replace this line with the directory that this file is located in
 cd "C:/Users/Ethan/OneDrive - Virginia Tech/Projects/pcb engraver/auto-flatcam"
 
 open_gerber bcu.gbr
